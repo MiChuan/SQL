@@ -1,18 +1,18 @@
 CREATE DATABASE WarehouseManagement;
 USE WarehouseManagement;
 
---²Ö¿â¡¾²Ö¿â±àºÅ£¬²Ö¿âÃû³Æ£¬²Ö¿âµØÖ·¡¿
+--ä»“åº“ã€ä»“åº“ç¼–å·ï¼Œä»“åº“åç§°ï¼Œä»“åº“åœ°å€ã€‘
 --STORAGE(STID CHAR(4),STNAME CHAR(20),STADRESS CHAR(200));
---Ö÷ÂëÎª²Ö¿â±àºÅ
+--ä¸»ç ä¸ºä»“åº“ç¼–å·
 CREATE TABLE STORAGE(
 STID CHAR(5) PRIMARY KEY,
 STNAME VARCHAR(20) NOT NULL,
 STADRESS VARCHAR(200)
 );
 
---»õÆ·±í¡¾»õÆ·ºÅ¡¢»õÆ·Ãû¡¢²Ö¿â±àºÅ¡¢»õÆ·¿â´æÁ¿¡¢Éú²ú³§¼Ò¡¿
+--è´§å“è¡¨ã€è´§å“å·ã€è´§å“åã€ä»“åº“ç¼–å·ã€è´§å“åº“å­˜é‡ã€ç”Ÿäº§åŽ‚å®¶ã€‘
 --COMMODITY(CID CHAR(13), CNAME CHAR(50), STID CHAR(4),STORE INT,MANUFACTURER CHAR(50));
---Ö÷ÂëÎª»õÆ·ºÅ£¬ÍâÂëÎª²Ö¿â±àºÅ£¬»õÆ·¿â´æ´óÓÚµÈÓÚ0
+--ä¸»ç ä¸ºè´§å“å·ï¼Œå¤–ç ä¸ºä»“åº“ç¼–å·ï¼Œè´§å“åº“å­˜å¤§äºŽç­‰äºŽ0
 CREATE TABLE COMMODITY(
 CID CHAR(13) PRIMARY KEY, 
 CNAME VARCHAR(50) NOT NULL, 
@@ -22,9 +22,9 @@ MANUFACTURER VARCHAR(50),
 FOREIGN KEY(STID) REFERENCES STORAGE(STID)
 );
 
---½ø»õµ¥±í¡¾½ø»õµ¥ºÅ¡¢»õÆ·ºÅ¡¢²Ö¿â±àºÅ¡¢½ø»õÊýÁ¿¡¢½ø»õÊ±¼ä¡¢½ø»õ³§¼Ò¡¢ÉóºËÒâ¼û¡¿
---STOCK(SID CHAR(10), CID CHAR(13), STID CHAR(4)£¬SNUM INT,STIME CHAR(11),MANUFACTURER CHAR(50),CHECKRESULT CHAR(1));
---Ö÷ÂëÎª½ø»õµ¥ºÅ£¬ÍâÂëÎª»õÆ·ºÅ¡¢²Ö¿â±àºÅ,ÉóºËÒâ¼ûÎª¡°Y¡±»ò¡°N¡±
+--è¿›è´§å•è¡¨ã€è¿›è´§å•å·ã€è´§å“å·ã€ä»“åº“ç¼–å·ã€è¿›è´§æ•°é‡ã€è¿›è´§æ—¶é—´ã€è¿›è´§åŽ‚å®¶ã€å®¡æ ¸æ„è§ã€‘
+--STOCK(SID CHAR(10), CID CHAR(13), STID CHAR(4)ï¼ŒSNUM INT,STIME CHAR(11),MANUFACTURER CHAR(50),CHECKRESULT CHAR(1));
+--ä¸»ç ä¸ºè¿›è´§å•å·ï¼Œå¤–ç ä¸ºè´§å“å·ã€ä»“åº“ç¼–å·,å®¡æ ¸æ„è§ä¸ºâ€œYâ€æˆ–â€œNâ€
 CREATE TABLE STOCK(
 SID CHAR(10) PRIMARY KEY, 
 CID CHAR(13), 
@@ -37,9 +37,9 @@ FOREIGN KEY(CID) REFERENCES COMMODITY(CID),
 FOREIGN KEY(STID) REFERENCES STORAGE(STID)
 );
 
---³ö»õµ¥±í¡¾³ö»õµ¥ºÅ¡¢»õÆ·ºÅ¡¢²Ö¿â±àºÅ¡¢³ö»õÊýÁ¿¡¢³ö»õÊ±¼ä¡¢ÉóºËÒâ¼û¡¿
---DELIVER(DID CHAR(10),CID CHAR(13),STID CHAR(4)£¬DNUM INT,DTIME CHAR(11),CHECKRESULT CHAR(1));
---Ö÷ÂëÎª³ö»õµ¥ºÅ£¬ÍâÂëÎª»õÆ·ºÅ¡¢²Ö¿â±àºÅ£¬ÉóºËÒâ¼ûÎª¡°Y¡±»ò¡°N¡±
+--å‡ºè´§å•è¡¨ã€å‡ºè´§å•å·ã€è´§å“å·ã€ä»“åº“ç¼–å·ã€å‡ºè´§æ•°é‡ã€å‡ºè´§æ—¶é—´ã€å®¡æ ¸æ„è§ã€‘
+--DELIVER(DID CHAR(10),CID CHAR(13),STID CHAR(4)ï¼ŒDNUM INT,DTIME CHAR(11),CHECKRESULT CHAR(1));
+--ä¸»ç ä¸ºå‡ºè´§å•å·ï¼Œå¤–ç ä¸ºè´§å“å·ã€ä»“åº“ç¼–å·ï¼Œå®¡æ ¸æ„è§ä¸ºâ€œYâ€æˆ–â€œNâ€
 CREATE TABLE DELIVER(
 DID CHAR(10) PRIMARY KEY,
 CID CHAR(13),
@@ -51,9 +51,9 @@ FOREIGN KEY(CID) REFERENCES COMMODITY(CID),
 FOREIGN KEY(STID) REFERENCES STORAGE(STID)
 );
 
---È±»õµÇ¼Ç±í¡¾È±»õµ¥ºÅ¡¢³ö»õµ¥ºÅ¡¢»õÆ·ºÅ¡¢²Ö¿â±àºÅ¡¢µÇ¼ÇÊ±¼ä¡¢È±»õÁ¿¡¿
---STOCKOUT(SOID CHAR(10),DID CHAR(10),CID CHAR(13),STID CHAR(4)£¬SOTIME CHAR(11),SONUM INT);
---Ö÷ÂëÎªÈ±»õµ¥ºÅ£¬ÍâÂëÎª³ö»õµ¥ºÅ¡¢»õÆ·ºÅ¡¢²Ö¿â±àºÅ
+--ç¼ºè´§ç™»è®°è¡¨ã€ç¼ºè´§å•å·ã€å‡ºè´§å•å·ã€è´§å“å·ã€ä»“åº“ç¼–å·ã€ç™»è®°æ—¶é—´ã€ç¼ºè´§é‡ã€‘
+--STOCKOUT(SOID CHAR(10),DID CHAR(10),CID CHAR(13),STID CHAR(4)ï¼ŒSOTIME CHAR(11),SONUM INT);
+--ä¸»ç ä¸ºç¼ºè´§å•å·ï¼Œå¤–ç ä¸ºå‡ºè´§å•å·ã€è´§å“å·ã€ä»“åº“ç¼–å·
 CREATE TABLE STOCKOUT(
 SOID CHAR(10) PRIMARY KEY,
 DID CHAR(10),
@@ -66,9 +66,9 @@ FOREIGN KEY(CID) REFERENCES COMMODITY(CID),
 FOREIGN KEY(STID) REFERENCES STORAGE(STID)
 );
 
---Ö°¹¤±í¡¾¹¤ºÅ¡¢ÐÕÃû¡¢ÐÔ±ð¡¢ÄêÁä¡¢Ö°Î»¡¿
+--èŒå·¥è¡¨ã€å·¥å·ã€å§“åã€æ€§åˆ«ã€å¹´é¾„ã€èŒä½ã€‘
 --EMPLOYEE(EID CHAR(10),ENAME CHAR(10),SEX CHAR(2),AGE INT,POSITION CHAR(10));
---Ö÷ÂëÎª¹¤ºÅ£¬ÐÂÔöËÄÀà½ÇÉ«²¢ÅäÖÃÈ¨ÏÞ£ºÏúÊÛ¡¢²É¹º¡¢ÉóºË¡¢¹ÜÀí
+--ä¸»ç ä¸ºå·¥å·ï¼Œæ–°å¢žå››ç±»è§’è‰²å¹¶é…ç½®æƒé™ï¼šé”€å”®ã€é‡‡è´­ã€å®¡æ ¸ã€ç®¡ç†
 CREATE TABLE EMPLOYEE(
 EID CHAR(10) PRIMARY KEY,
 ENAME CHAR(10) NOT NULL,
@@ -77,8 +77,8 @@ AGE INT,
 POSITION CHAR(10)
 );
 
---ÓÃ»§±í¡¾ÓÃ»§Ãû¡¢ÃÜÂë¡¢È¨ÏÞ¡¿
---Ö÷ÂëÎªÓÃ»§Ãû£¬ÍâÂëÎªÓÃ»§Ãû£¨Ö°Ô±±í¹¤ºÅ£©£¬È¨ÏÞ·ÖÎªËÄÀà£º¹ÜÀí(GuanLi)¡¢ÏúÊÛ(XiaoShou)¡¢²É¹º(CaiGou)¡¢ÉóºË(ShenHe)
+--ç”¨æˆ·è¡¨ã€ç”¨æˆ·åã€å¯†ç ã€æƒé™ã€‘
+--ä¸»ç ä¸ºç”¨æˆ·åï¼Œå¤–ç ä¸ºç”¨æˆ·åï¼ˆèŒå‘˜è¡¨å·¥å·ï¼‰ï¼Œæƒé™åˆ†ä¸ºå››ç±»ï¼šç®¡ç†(GuanLi)ã€é”€å”®(XiaoShou)ã€é‡‡è´­(CaiGou)ã€å®¡æ ¸(ShenHe)
 CREATE TABLE DB_USER(
 DB_USER_NAME CHAR(10)PRIMARY KEY,
 DB_PASSWORD CHAR(6),
@@ -86,43 +86,43 @@ PERMISSION CHAR(4),
 FOREIGN KEY(DB_USER_NAME) REFERENCES EMPLOYEE(EID)
 );
 
---´´½¨µÇÂ½ÕÊ»§£¨create login£©
---µÇÂ½ÕÊ»§ÃûÎª£º¡°Xiao¡±,µÇÂ½ÃÜÂë£º123456¡±,Ä¬ÈÏÁ¬½Óµ½µÄÊý¾Ý¿â£º¡°WarehouseManagement¡±¡£
---µÇÂ½ÕÊ»§ÃûÎª£º¡°Cai¡±,µÇÂ½ÃÜÂë£º123456¡±,Ä¬ÈÏÁ¬½Óµ½µÄÊý¾Ý¿â£º¡°WarehouseManagement¡±¡£
---µÇÂ½ÕÊ»§ÃûÎª£º¡°Shen¡±,µÇÂ½ÃÜÂë£º123456¡±,Ä¬ÈÏÁ¬½Óµ½µÄÊý¾Ý¿â£º¡°WarehouseManagement¡±¡£
---µÇÂ½ÕÊ»§ÃûÎª£º¡°Guan¡±,µÇÂ½ÃÜÂë£º123456¡±,Ä¬ÈÏÁ¬½Óµ½µÄÊý¾Ý¿â£º¡°WarehouseManagement¡±¡£
+--åˆ›å»ºç™»é™†å¸æˆ·ï¼ˆcreate loginï¼‰
+--ç™»é™†å¸æˆ·åä¸ºï¼šâ€œXiaoâ€,ç™»é™†å¯†ç ï¼š123456â€,é»˜è®¤è¿žæŽ¥åˆ°çš„æ•°æ®åº“ï¼šâ€œWarehouseManagementâ€ã€‚
+--ç™»é™†å¸æˆ·åä¸ºï¼šâ€œCaiâ€,ç™»é™†å¯†ç ï¼š123456â€,é»˜è®¤è¿žæŽ¥åˆ°çš„æ•°æ®åº“ï¼šâ€œWarehouseManagementâ€ã€‚
+--ç™»é™†å¸æˆ·åä¸ºï¼šâ€œShenâ€,ç™»é™†å¯†ç ï¼š123456â€,é»˜è®¤è¿žæŽ¥åˆ°çš„æ•°æ®åº“ï¼šâ€œWarehouseManagementâ€ã€‚
+--ç™»é™†å¸æˆ·åä¸ºï¼šâ€œGuanâ€,ç™»é™†å¯†ç ï¼š123456â€,é»˜è®¤è¿žæŽ¥åˆ°çš„æ•°æ®åº“ï¼šâ€œWarehouseManagementâ€ã€‚
 create login Xiao with password='123456', default_database = WarehouseManagement;
 create login Cai with password='123456', default_database = WarehouseManagement;
 create login Shen with password='123456', default_database = WarehouseManagement;
 create login Guan with password='123456', default_database = WarehouseManagement;
 
---ÎªµÇÂ½ÕË»§´´½¨Êý¾Ý¿âÓÃ»§£¨create user£©,ÔÚMovieÊý¾Ý¿âÖÐµÄsecurityÖÐµÄuserÏÂ¿ÉÒÔÕÒµ½
---²¢Ö¸¶¨Êý¾Ý¿âÓÃ»§µÄÄ¬ÈÏ schema ÊÇ¡°dbo¡±
+--ä¸ºç™»é™†è´¦æˆ·åˆ›å»ºæ•°æ®åº“ç”¨æˆ·ï¼ˆcreate userï¼‰,åœ¨Movieæ•°æ®åº“ä¸­çš„securityä¸­çš„userä¸‹å¯ä»¥æ‰¾åˆ°
+--å¹¶æŒ‡å®šæ•°æ®åº“ç”¨æˆ·çš„é»˜è®¤ schema æ˜¯â€œdboâ€
 create user Xiao for login Xiao with default_schema = dbo;
 create user Cai for login Cai with default_schema = dbo;
 create user Shen for login Shen with default_schema = dbo;
 create user Guan for login Guan with default_schema = dbo;
 
---Í¨¹ý¼ÓÈëÊý¾Ý¿â½ÇÉ«
+--é€šè¿‡åŠ å…¥æ•°æ®åº“è§’è‰²
 create role XiaoShou;
 create role CaiGou;
 create role ShenHe;
 create role GuanLi;
 
---¸³Óè½ÇÉ«È¨ÏÞ
---ÏúÊÛ£º²Ö¿â±í£º²éÑ¯£»³ö»õµ¥£ºALL£»È±»õ±í£º²éÑ¯£»»õÎï±í£º²éÑ¯£»
+--èµ‹äºˆè§’è‰²æƒé™
+--é”€å”®ï¼šä»“åº“è¡¨ï¼šæŸ¥è¯¢ï¼›å‡ºè´§å•ï¼šALLï¼›ç¼ºè´§è¡¨ï¼šæŸ¥è¯¢ï¼›è´§ç‰©è¡¨ï¼šæŸ¥è¯¢ï¼›
 grant select on STORAGE to XiaoShou;
 grant ALL on DELIVER to XiaoShou;
 grant select on STOCKOUT to XiaoShou;
 grant select on COMMODITY to XiaoShou;
 
---²É¹º£º²Ö¿â±í£º²éÑ¯£»½ø»õµ¥£ºALL£»È±»õ±í£º²éÑ¯£»»õÎï±í£º²éÑ¯£»
+--é‡‡è´­ï¼šä»“åº“è¡¨ï¼šæŸ¥è¯¢ï¼›è¿›è´§å•ï¼šALLï¼›ç¼ºè´§è¡¨ï¼šæŸ¥è¯¢ï¼›è´§ç‰©è¡¨ï¼šæŸ¥è¯¢ï¼›
 grant select on STORAGE to CaiGou;
 grant ALL on STOCK to CaiGou;
 grant select on STOCKOUT to CaiGou;
 grant select on COMMODITY to CaiGou;
 
---ÉóºË£º²Ö¿â±í£º²éÑ¯£»½ø»õµ¥£º²éÑ¯¡¢¸üÐÂ£»³ö»õµ¥£º²éÑ¯¡¢¸üÐÂ£»È±»õ±í£º²éÑ¯£»»õÎï±í£º²éÑ¯
+--å®¡æ ¸ï¼šä»“åº“è¡¨ï¼šæŸ¥è¯¢ï¼›è¿›è´§å•ï¼šæŸ¥è¯¢ã€æ›´æ–°ï¼›å‡ºè´§å•ï¼šæŸ¥è¯¢ã€æ›´æ–°ï¼›ç¼ºè´§è¡¨ï¼šæŸ¥è¯¢ï¼›è´§ç‰©è¡¨ï¼šæŸ¥è¯¢
 grant select on STORAGE to ShenHe;
 grant select on STOCK to ShenHe;
 grant update on STOCK to ShenHe;
@@ -131,7 +131,7 @@ grant update on DELIVER to ShenHe;
 grant select on STOCKOUT to ShenHe;
 grant select on COMMODITY to ShenHe;
 
---¹ÜÀí£º²Ö¿â±í£º²éÑ¯£»½ø»õµ¥£º²éÑ¯¡¢É¾³ý£»³ö»õµ¥£º²éÑ¯¡¢É¾³ý£»È±»õ±í£ºALL£»»õÎï±í£ºALL
+--ç®¡ç†ï¼šä»“åº“è¡¨ï¼šæŸ¥è¯¢ï¼›è¿›è´§å•ï¼šæŸ¥è¯¢ã€åˆ é™¤ï¼›å‡ºè´§å•ï¼šæŸ¥è¯¢ã€åˆ é™¤ï¼›ç¼ºè´§è¡¨ï¼šALLï¼›è´§ç‰©è¡¨ï¼šALL
 grant select on STORAGE to GuanLi;
 grant select on STOCK to GuanLi;
 grant delete on STOCK to GuanLi;
@@ -140,38 +140,38 @@ grant delete on DELIVER to GuanLi;
 grant ALL on STOCKOUT to GuanLi;
 grant ALL on COMMODITY to GuanLi;
 
---¸³ÓèÊý¾Ý¿âÓÃ»§È¨ÏÞ
+--èµ‹äºˆæ•°æ®åº“ç”¨æˆ·æƒé™
 exec sp_addrolemember 'XiaoShou', 'Xiao'
 exec sp_addrolemember 'CaiGou', 'Cai'
 exec sp_addrolemember 'ShenHe', 'Shen'
 exec sp_addrolemember 'GuanLi', 'Guan'
 
---²åÈëÊý¾Ý
---²Ö¿â±í²åÈëÊý¾Ý
-INSERT INTO STORAGE(STID,STNAME,STADRESS) VALUES('10371','²Ö¿â1','ºéÉ½ÇøçóÓ÷Â·1037ºÅ');
-INSERT INTO STORAGE(STID,STNAME,STADRESS) VALUES('10372','²Ö¿â2','ºéÉ½ÇøçóÓ÷Â·1037ºÅ');
-INSERT INTO STORAGE(STID,STNAME,STADRESS) VALUES('10373','²Ö¿â3','ºéÉ½ÇøçóÓ÷Â·1037ºÅ');
+--æ’å…¥æ•°æ®
+--ä»“åº“è¡¨æ’å…¥æ•°æ®
+INSERT INTO STORAGE(STID,STNAME,STADRESS) VALUES('10371','ä»“åº“1','æ´ªå±±åŒºçžå–»è·¯1037å·');
+INSERT INTO STORAGE(STID,STNAME,STADRESS) VALUES('10372','ä»“åº“2','æ´ªå±±åŒºçžå–»è·¯1037å·');
+INSERT INTO STORAGE(STID,STNAME,STADRESS) VALUES('10373','ä»“åº“3','æ´ªå±±åŒºçžå–»è·¯1037å·');
 select * from STORAGE
 
---Ö°Ô±±í²åÈëÊý¾Ý
-INSERT INTO EMPLOYEE(EID,ENAME,SEX,AGE,POSITION) VALUES('2019060001','Ð¤ÊÚ','ÄÐ',30,'ÏúÊÛ');
-INSERT INTO EMPLOYEE(EID,ENAME,SEX,AGE,POSITION) VALUES('2019060002','²Ì¹¹','ÄÐ',30,'²É¹º');
-INSERT INTO EMPLOYEE(EID,ENAME,SEX,AGE,POSITION) VALUES('2019060003','ÉòºÓ','Å®',30,'ÉóºË');
-INSERT INTO EMPLOYEE(EID,ENAME,SEX,AGE,POSITION) VALUES('2019060004','¹ØÀö','Å®',30,'¹ÜÀí');
+--èŒå‘˜è¡¨æ’å…¥æ•°æ®
+INSERT INTO EMPLOYEE(EID,ENAME,SEX,AGE,POSITION) VALUES('2019060001','è‚–æŽˆ','ç”·',30,'é”€å”®');
+INSERT INTO EMPLOYEE(EID,ENAME,SEX,AGE,POSITION) VALUES('2019060002','è”¡æž„','ç”·',30,'é‡‡è´­');
+INSERT INTO EMPLOYEE(EID,ENAME,SEX,AGE,POSITION) VALUES('2019060003','æ²ˆæ²³','å¥³',30,'å®¡æ ¸');
+INSERT INTO EMPLOYEE(EID,ENAME,SEX,AGE,POSITION) VALUES('2019060004','å…³ä¸½','å¥³',30,'ç®¡ç†');
 
---ÓÃ»§±í²åÈëÊý¾Ý
+--ç”¨æˆ·è¡¨æ’å…¥æ•°æ®
 INSERT INTO DB_USER(DB_USER_NAME,DB_PASSWORD,PERMISSION) VALUES('2019060001','147258','Xiao');
 INSERT INTO DB_USER(DB_USER_NAME,DB_PASSWORD,PERMISSION) VALUES('2019060002','147258','CaiG');
 INSERT INTO DB_USER(DB_USER_NAME,DB_PASSWORD,PERMISSION) VALUES('2019060003','147258','Shen');
 INSERT INTO DB_USER(DB_USER_NAME,DB_PASSWORD,PERMISSION) VALUES('2019060004','147258','Guan');
 
---»õÎï±í²åÈëÊý¾Ý
-INSERT INTO COMMODITY(CID, CNAME, STID,STORE,MANUFACTURER) VALUES('6928804010527','¿É¿Ú¿ÉÀÖ','10371',50,'ºþ±±Ì«¹Å¿É¿Ú¿ÉÀÖÒûÁÏÓÐÏÞ¹«Ë¾');
-INSERT INTO COMMODITY(CID, CNAME, STID,STORE,MANUFACTURER) VALUES('6902083887070','ÑõµÀ¿óÈªË®','10371',100,'ÎäººÍÞ¹þ¹þºã·ãÒûÁÏÓÐÏÞ¹«Ë¾');
-INSERT INTO COMMODITY(CID, CNAME, STID,STORE,MANUFACTURER) VALUES('6920734706303','¿µÊ¦¸µºìÓÍ±¬½·Å£ÈâÃæ','10372',200,'³¤É³¸£Âú¶àÊ³Æ·ÓÐÏÞ¹«Ë¾');
-INSERT INTO COMMODITY(CID, CNAME, STID,STORE,MANUFACTURER) VALUES('6901668004574','°ÂÀû°ÂÇÉ¿Ë°ôÍþ»¯±ý¸É','10372',500,'ÒÚ×ÌÊ³Æ·(±±¾©)ÓÐÏÞ¹«Ë¾');
-INSERT INTO COMMODITY(CID, CNAME, STID,STORE,MANUFACTURER) VALUES('9787513307338','ÎÒÊÇÄãÁ÷ÀË¹ýµÄÒ»¸öµØ·½','10373',100,'ÐÂÐÇ³ö°æÉç');
-INSERT INTO COMMODITY(CID, CNAME, STID,STORE,MANUFACTURER) VALUES('9787542662620','ÁÊ²Ý','10373',50,'ÉÏº£ÈýÁªÊéµê');
-INSERT INTO COMMODITY(CID, CNAME, STID,STORE,MANUFACTURER) VALUES('9787201072326','ÈÕ¹âÁ÷Äê','10373',200,'Ìì½òÈËÃñ³ö°æÉç');
-INSERT INTO COMMODITY(CID, CNAME, STID,STORE,MANUFACTURER) VALUES('9787531326953','ÊÜ»î','10373',500,'´º·çÎÄÒÕ³ö°æÉç');
+--è´§ç‰©è¡¨æ’å…¥æ•°æ®
+INSERT INTO COMMODITY(CID, CNAME, STID,STORE,MANUFACTURER) VALUES('6928804010527','å¯å£å¯ä¹','10371',50,'æ¹–åŒ—å¤ªå¤å¯å£å¯ä¹é¥®æ–™æœ‰é™å…¬å¸');
+INSERT INTO COMMODITY(CID, CNAME, STID,STORE,MANUFACTURER) VALUES('6902083887070','æ°§é“çŸ¿æ³‰æ°´','10371',100,'æ­¦æ±‰å¨ƒå“ˆå“ˆæ’æž«é¥®æ–™æœ‰é™å…¬å¸');
+INSERT INTO COMMODITY(CID, CNAME, STID,STORE,MANUFACTURER) VALUES('6920734706303','åº·å¸ˆå‚…çº¢æ²¹çˆ†æ¤’ç‰›è‚‰é¢','10372',200,'é•¿æ²™ç¦æ»¡å¤šé£Ÿå“æœ‰é™å…¬å¸');
+INSERT INTO COMMODITY(CID, CNAME, STID,STORE,MANUFACTURER) VALUES('6901668004574','å¥¥åˆ©å¥¥å·§å…‹æ£’å¨åŒ–é¥¼å¹²','10372',500,'äº¿æ»‹é£Ÿå“(åŒ—äº¬)æœ‰é™å…¬å¸');
+INSERT INTO COMMODITY(CID, CNAME, STID,STORE,MANUFACTURER) VALUES('9787513307338','æˆ‘æ˜¯ä½ æµæµªè¿‡çš„ä¸€ä¸ªåœ°æ–¹','10373',100,'æ–°æ˜Ÿå‡ºç‰ˆç¤¾');
+INSERT INTO COMMODITY(CID, CNAME, STID,STORE,MANUFACTURER) VALUES('9787542662620','æ½¦è‰','10373',50,'ä¸Šæµ·ä¸‰è”ä¹¦åº—');
+INSERT INTO COMMODITY(CID, CNAME, STID,STORE,MANUFACTURER) VALUES('9787201072326','æ—¥å…‰æµå¹´','10373',200,'å¤©æ´¥äººæ°‘å‡ºç‰ˆç¤¾');
+INSERT INTO COMMODITY(CID, CNAME, STID,STORE,MANUFACTURER) VALUES('9787531326953','å—æ´»','10373',500,'æ˜¥é£Žæ–‡è‰ºå‡ºç‰ˆç¤¾');
 select * from COMMODITY
